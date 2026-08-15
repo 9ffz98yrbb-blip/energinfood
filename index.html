@@ -1,1 +1,128 @@
 
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>EnergiFood</title>
+
+<style>
+
+body{font-family:-apple-system,Arial;background:#f5f5f5;padding:20px;color:#222}
+
+.card{background:white;padding:20px;margin:15px 0;border-radius:20px}
+
+h1{text-align:center}.big{text-align:center;font-size:40px;font-weight:bold}
+
+.bar{height:10px;background:#ddd;border-radius:10px}.bar div{height:100%;background:#ff7a18}
+
+input,button{width:100%;padding:14px;margin:6px 0;box-sizing:border-box;border-radius:12px}
+
+input{border:1px solid #ddd}button{border:0;background:#ff7a18;color:white;font-size:16px;font-weight:bold}
+
+.row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🍽️ EnergiFood</h1>
+
+<div class="card">
+
+<p style="text-align:center">Calories consommées</p>
+
+<div class="big"><span id="kcal">0</span> kcal</div>
+
+<p style="text-align:center">Objectif : 2000 kcal</p>
+
+<div class="bar"><div id="bar" style="width:0%"></div></div>
+
+</div>
+
+<div class="card">
+
+<h2>🥩 Nutrition</h2>
+
+<div class="row"><span>Protéines</span><b><span id="p">0</span> g</b></div>
+
+<div class="row"><span>Glucides</span><b><span id="c">0</span> g</b></div>
+
+<div class="row"><span>Lipides</span><b><span id="f">0</span> g</b></div>
+
+</div>
+
+<div class="card">
+
+<h2>➕ Ajouter un repas</h2>
+
+<input id="nom" placeholder="Nom du repas">
+
+<input id="k" type="number" placeholder="Calories">
+
+<input id="pr" type="number" placeholder="Protéines (g)">
+
+<input id="ca" type="number" placeholder="Glucides (g)">
+
+<input id="li" type="number" placeholder="Lipides (g)">
+
+<button onclick="add()">Ajouter le repas</button>
+
+</div>
+
+<div class="card">
+
+<h2>🍽️ Journal</h2>
+
+<div id="journal">Aucun repas enregistré.</div>
+
+</div>
+
+<script>
+
+let k=0,p=0,c=0,f=0;
+
+function add(){
+
+let n=document.getElementById("nom").value||"Repas";
+
+let a=Number(document.getElementById("k").value)||0;
+
+let b=Number(document.getElementById("pr").value)||0;
+
+let d=Number(document.getElementById("ca").value)||0;
+
+let e=Number(document.getElementById("li").value)||0;
+
+k+=a;p+=b;c+=d;f+=e;
+
+document.getElementById("kcal").innerText=k;
+
+document.getElementById("p").innerText=p;
+
+document.getElementById("c").innerText=c;
+
+document.getElementById("f").innerText=f;
+
+document.getElementById("bar").style.width=Math.min(k/2000*100,100)+"%";
+
+let j=document.getElementById("journal");
+
+if(j.innerText==="Aucun repas enregistré.")j.innerHTML="";
+
+j.innerHTML+="<div class='row'><span>"+n+"</span><b>"+a+" kcal</b></div>";
+
+}
+
+</script>
+
+</body>
+
+</html>
